@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CafeZupasAutomation.CafeZupasApp.longPress">
+      <class name="CafeZupasAutomation.CafeZupasApp.firstTest">
         <methods>
-          <include name="LongPress"/>
           <include name="ConfigureAppium"/>
+          <include name="LoginTest"/>
           <include name="quitDriver"/>
         </methods>
-      </class> <!-- CafeZupasAutomation.CafeZupasApp.longPress -->
+      </class> <!-- CafeZupasAutomation.CafeZupasApp.firstTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

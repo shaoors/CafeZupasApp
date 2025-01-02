@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-01T19:20:51 PKT" name="Default suite" finished-at="2025-01-01T19:21:11 PKT" duration-ms="20357">
+  <suite started-at="2025-01-02T16:07:29 PKT" name="Default suite" finished-at="2025-01-02T16:08:03 PKT" duration-ms="34247">
     <groups>
     </groups>
-    <test started-at="2025-01-01T19:20:51 PKT" name="Default test" finished-at="2025-01-01T19:21:11 PKT" duration-ms="20357">
-      <class name="CafeZupasAutomation.CafeZupasApp.longPress">
-        <test-method is-config="true" signature="ConfigureAppium()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.longPress@a514af7]" started-at="2025-01-01T19:20:51 PKT" name="ConfigureAppium" finished-at="2025-01-01T19:21:01 PKT" duration-ms="10251" status="PASS">
+    <test started-at="2025-01-02T16:07:29 PKT" name="Default test" finished-at="2025-01-02T16:08:03 PKT" duration-ms="34247">
+      <class name="CafeZupasAutomation.CafeZupasApp.firstTest">
+        <test-method is-config="true" signature="ConfigureAppium()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.firstTest@a514af7]" started-at="2025-01-02T16:07:29 PKT" name="ConfigureAppium" finished-at="2025-01-02T16:07:42 PKT" duration-ms="13074" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ConfigureAppium -->
-        <test-method signature="LongPress()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.longPress@a514af7]" started-at="2025-01-01T19:21:01 PKT" name="LongPress" finished-at="2025-01-01T19:21:10 PKT" duration-ms="9207" status="PASS">
+        <test-method signature="LoginTest()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.firstTest@a514af7]" started-at="2025-01-02T16:07:42 PKT" name="LoginTest" finished-at="2025-01-02T16:08:02 PKT" duration-ms="19982" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- LongPress -->
-        <test-method is-config="true" signature="quitDriver()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.longPress@a514af7]" started-at="2025-01-01T19:21:10 PKT" name="quitDriver" finished-at="2025-01-01T19:21:11 PKT" duration-ms="874" status="PASS">
+        </test-method> <!-- LoginTest -->
+        <test-method is-config="true" signature="quitDriver()[pri:0, instance:CafeZupasAutomation.CafeZupasApp.firstTest@a514af7]" started-at="2025-01-02T16:08:02 PKT" name="quitDriver" finished-at="2025-01-02T16:08:03 PKT" duration-ms="1164" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- quitDriver -->
-      </class> <!-- CafeZupasAutomation.CafeZupasApp.longPress -->
+      </class> <!-- CafeZupasAutomation.CafeZupasApp.firstTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

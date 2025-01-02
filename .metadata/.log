@@ -11,3 +11,42 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY ch.qos.logback.classic 1 0 2024-12-30 13:25:54.283
 !MESSAGE Logback config file: /Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+!SESSION 2025-01-02 14:42:37.519 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=23.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_PK
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:42:39.863
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:42:56.953
+!MESSAGE Logback config file: /Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+!SESSION 2025-01-02 14:46:00.507 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=23.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_PK
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:46:02.119
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:46:16.615
+!MESSAGE Logback config file: /Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
+!SESSION 2025-01-02 14:48:31.822 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=23.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_PK
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/tk-lpt-1074/.eclipse_keyring
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:48:33.630
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2025-01-02 14:48:50.398
+!MESSAGE Logback config file: /Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/.metadata/.plugins/org.eclipse.m2e.logback/logback.2.6.1.20240411-1122.xml
