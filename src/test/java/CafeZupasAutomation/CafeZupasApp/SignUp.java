@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
 
 public class SignUp extends BaseSetup {
+	
+	
 	@Test
 	public void SignUpTest() throws MalformedURLException, URISyntaxException {
 
