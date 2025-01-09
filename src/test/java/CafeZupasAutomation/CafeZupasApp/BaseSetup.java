@@ -87,8 +87,6 @@
 //	}
 //}
 
-
-
 package CafeZupasAutomation.CafeZupasApp;
 
 import java.io.File;
@@ -117,90 +115,87 @@ import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 public class BaseSetup {
 
-    public AndroidDriver driver;
-    public AppiumDriverLocalService service;
+	public AndroidDriver driver;
+	public AppiumDriverLocalService service;
 
-    public void setupEnvironment() {
-        System.setProperty("ANDROID_HOME", "/Users/tk-lpt-979/Library/Android/sdk");
-        System.setProperty("ANDROID_SDK_ROOT", "/Users/tk-lpt-979/Library/Android/sdk");
-    }
+	public void setupEnvironment() {
+		System.setProperty("ANDROID_HOME", "/Users/tk-lpt-1074/Library/Android/sdk");
+		System.setProperty("ANDROID_SDK_ROOT", "/Users/tk-lpt-1074/Library/Android/sdk");
+	}
 
-    @BeforeClass
-    public void configureAppium() throws MalformedURLException, URISyntaxException {
-        setupEnvironment();
-        
-        System.out.println("ANDROID_HOME: " + System.getenv("ANDROID_HOME"));
-        System.out.println("ANDROID_SDK_ROOT: " + System.getenv("ANDROID_SDK_ROOT"));
-        
-        Map<String, String> environment = new HashMap<>(System.getenv());
-        environment.put("ANDROID_HOME", "/Users/tk-lpt-979/Library/Android/sdk");
-        environment.put("ANDROID_SDK_ROOT", "/Users/tk-lpt-979/Library/Android/sdk");
+	@BeforeClass
+	public void configureAppium() throws MalformedURLException, URISyntaxException {
+		setupEnvironment();
 
-        // Initialize and start Appium server
-        service = new AppiumServiceBuilder()
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
-                .withEnvironment(environment)
-                .build();
-        
-        if (!service.isRunning()) {
-            service.start();
-        }
+		System.out.println("ANDROID_HOME: " + System.getenv("ANDROID_HOME"));
+		System.out.println("ANDROID_SDK_ROOT: " + System.getenv("ANDROID_SDK_ROOT"));
 
-        // Appium driver options
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("FirstMediumEnvAuto");
-        options.setApp("/Users/tk-lpt-979/eclipse-workspace/CafeZupasApp/src/test/java/resources/app-staging-release.apk");
-        options.setAutomationName("UIAutomator2");
+		Map<String, String> environment = new HashMap<>(System.getenv());
+		environment.put("ANDROID_HOME", "/Users/tk-lpt-1074/Library/Android/sdk");
+		environment.put("ANDROID_SDK_ROOT", "/Users/tk-lpt-1074/Library/Android/sdk");
 
-        // Initialize Android driver
-        driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
-    }
+		// Initialize and start Appium server
+		service = new AppiumServiceBuilder()
+				.withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+				.withIPAddress("127.0.0.1").usingPort(4723).withEnvironment(environment).build();
 
-    // Utility methods for common actions
-    public void longPressAction(WebElement ele) {
-        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
-                ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(), "duration", 2000));
-    }
+		if (!service.isRunning()) {
+			service.start();
+		}
 
-    public void scrollToEndAction() {
-        boolean canScrollMore;
-        do {
-            canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
-                    ImmutableMap.of("left", 0, "top", 100, "width", 500, "height", 600, "direction", "down", "percent",
-                            20, "velocity", 0.8));
-        } while (canScrollMore);
-    }
+		// Appium driver options
+		UiAutomator2Options options = new UiAutomator2Options();
+		options.setDeviceName("FirstMediumEnvAuto");
+		options.setApp(
+				"/Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/src/test/java/resources/app-staging-release.apk");
+		options.setAutomationName("UIAutomator2");
 
-    public void swipeAction(WebElement ele) {
-        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture",
-                ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(), "direction", "left", "percent", 0.1));
-    }
+		// Initialize Android driver
+		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
+	}
 
-    public static String generateRandomEmail() {
-        long timestamp = System.currentTimeMillis();
-        return "testAuto" + timestamp + "@gmail.com";
-    }
+	// Utility methods for common actions
+	public void longPressAction(WebElement ele) {
+		((JavascriptExecutor) driver).executeScript("mobile: longClickGesture",
+				ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(), "duration", 2000));
+	}
 
-    @AfterMethod(alwaysRun = true)
-    public void stopAppiumIfNeeded() {
-        // Stop Appium service if running to release the port
-        if (service != null && service.isRunning()) {
-            service.stop();
-        }
-    }
+	public void scrollToEndAction() {
+		boolean canScrollMore;
+		do {
+			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+					ImmutableMap.of("left", 0, "top", 100, "width", 500, "height", 800, "direction", "down", "percent",
+							50, "velocity", 1));
+		} while (canScrollMore);
+	}
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        // Quit driver and stop service
-        if (driver != null) {
-            driver.quit();
-        }
-        if (service != null && service.isRunning()) {
-            service.stop();
-        }
-    }
+	public void swipeAction(WebElement ele) {
+		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture",
+				ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(), "direction", "left", "percent", 0.1));
+	}
+
+	public static String generateRandomEmail() {
+		long timestamp = System.currentTimeMillis();
+		return "testAuto" + timestamp + "@gmail.com";
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void stopAppiumIfNeeded() {
+		// Stop Appium service if running to release the port
+		if (service != null && service.isRunning()) {
+			service.stop();
+		}
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void tearDown() {
+		// Quit driver and stop service
+		if (driver != null) {
+			driver.quit();
+		}
+		if (service != null && service.isRunning()) {
+			service.stop();
+		}
+	}
 }
-
