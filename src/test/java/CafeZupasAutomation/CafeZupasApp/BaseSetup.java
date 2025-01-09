@@ -191,15 +191,21 @@ public class BaseSetup {
             service.stop();
         }
     }
-
+    
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        // Quit driver and stop service
         if (driver != null) {
-            driver.quit();
+            try {
+                driver.quit(); // Quit the driver safely
+            } catch (Exception e) {
+                System.err.println("Error while quitting driver: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Driver is already null, skipping quit.");
         }
+        
         if (service != null && service.isRunning()) {
-            service.stop();
+            service.stop(); // Stop the Appium server
         }
     }
 }
