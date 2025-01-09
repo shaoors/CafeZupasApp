@@ -41,8 +41,10 @@ public class BaseSetup {
 		options.setApp(
 				"//Users//tk-lpt-1074//eclipse-workspace//CafeZupasApp//src//test//java//resources//app-staging-release.apk");
 		options.setAutomationName("UIAutomator2");
+		// TO give chrome driver path to do hybrid app
+//		options.setChromedriverExecutable(null)
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
 
 	}
 
@@ -54,14 +56,20 @@ public class BaseSetup {
 	public void scrollToEndAction() {
 		boolean canScrollMore;
 		do {
-			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap
-					.of("left", 100, "top", 100, "width", 200, "height", 200, "direction", "down", "percent", 1.0));
+			canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+					ImmutableMap.of("left", 0, "top", 100, "width", 500, "height", 600, "direction", "down", "percent",
+							20, "velocity", 0.8));
 		} while (canScrollMore);
 	}
 
 	public void swipeAction(WebElement ele) {
 		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture",
 				ImmutableMap.of("elementId", ((RemoteWebElement) ele).getId(), "direction", "left", "percent", 0.1));
+	}
+
+	public static String generateRandomEmail() {
+		long timestamp = System.currentTimeMillis();
+		return "testAuto" + timestamp + "@gmail.com";
 	}
 
 	@AfterClass

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CafeZupasAutomation.CafeZupasApp.firstTest">
+      <class name="CafeZupasAutomation.CafeZupasApp.SignUpFail">
         <methods>
+          <include name="SignUpFailTest"/>
           <include name="ConfigureAppium"/>
-          <include name="LoginTest"/>
           <include name="quitDriver"/>
         </methods>
-      </class> <!-- CafeZupasAutomation.CafeZupasApp.firstTest -->
+      </class> <!-- CafeZupasAutomation.CafeZupasApp.SignUpFail -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

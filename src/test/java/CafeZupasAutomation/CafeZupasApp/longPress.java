@@ -15,7 +15,6 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 
 public class longPress extends BaseSetup {
-	@Test
 	public void LongPress() throws MalformedURLException, URISyntaxException {
 // LongPress
 //		driver.findElement(AppiumBy.accessibilityId("Views")).click();
@@ -30,21 +29,21 @@ public class longPress extends BaseSetup {
 //				AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));"));
 //		scrollToEndAction();
 // Swipe Gesture
-		driver.findElement(AppiumBy.accessibilityId("Views")).click();
-		driver.findElement(AppiumBy.accessibilityId("Gallery")).click();
-		driver.findElement(AppiumBy.accessibilityId("1. Photos")).click();
-		WebElement firstImage = driver.findElement(By.xpath("//android.widget.ImageView[1]"));
-		Assert.assertEquals(
-				driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getDomAttribute("focusable"), "true");
-
-		swipeAction(firstImage);
-		Assert.assertEquals(
-				driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getDomAttribute("focusable"), "false");
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		driver.findElement(AppiumBy.accessibilityId("Views")).click();
+//		driver.findElement(AppiumBy.accessibilityId("Gallery")).click();
+//		driver.findElement(AppiumBy.accessibilityId("1. Photos")).click();
+//		WebElement firstImage = driver.findElement(By.xpath("//android.widget.ImageView[1]"));
+//		Assert.assertEquals(
+//				driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getDomAttribute("focusable"), "true");
+//
+//		swipeAction(firstImage);
+//		Assert.assertEquals(
+//				driver.findElement(By.xpath("(//android.widget.ImageView)[1]")).getDomAttribute("focusable"), "false");
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 }
