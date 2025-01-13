@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
 
+import CafeZupasAutomation.CafeZupasApp.java.base.BaseSetup;
 import io.appium.java_client.AppiumBy;
 
 public class longPress extends BaseSetup {

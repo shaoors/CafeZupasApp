@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CafeZupasAutomation.CafeZupasApp.SignUp">
+      <class name="Android.test.SignUpTest">
         <methods>
-          <include name="SignUpTest"/>
-          <include name="tearDown"/>
           <include name="configureAppium"/>
-          <include name="stopAppiumIfNeeded"/>
+          <include name="tearDown"/>
+          <include name="testSignUpFail"/>
+          <include name="testSignUp"/>
         </methods>
-      </class> <!-- CafeZupasAutomation.CafeZupasApp.SignUp -->
+      </class> <!-- Android.test.SignUpTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
