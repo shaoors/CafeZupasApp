@@ -29,8 +29,8 @@
 //	public AppiumDriverLocalService service;
 //	
 //	public void setupEnvironment() {
-//        System.setProperty("ANDROID_HOME", "//Users//tk-lpt-979//Library//Android//sdk");
-//        System.setProperty("ANDROID_SDK_ROOT", "//Users//tk-lpt-979//Library//Android//sdk");
+//        System.setProperty("ANDROID_HOME", "//Users//tk-lpt-1074//Library//Android//sdk");
+//        System.setProperty("ANDROID_SDK_ROOT", "//Users//tk-lpt-1074//Library//Android//sdk");
 //    }
 //	
 //
@@ -47,7 +47,7 @@
 //		UiAutomator2Options options = new UiAutomator2Options();
 //		options.setDeviceName("FirstMediumEnvAuto");
 //		options.setApp(
-//				"//Users//tk-lpt-979//eclipse-workspace//CafeZupasApp//src//test//java//resources//app-staging-release.apk");
+//				"//Users//tk-lpt-1074//eclipse-workspace//CafeZupasApp//src//test//java//resources//app-staging-release.apk");
 //		options.setAutomationName("UIAutomator2");
 //		// TO give chrome driver path to do hybrid app
 ////		options.setChromedriverExecutable(null)
@@ -121,8 +121,8 @@ public class BaseSetup {
     public AppiumDriverLocalService service;
 
     public void setupEnvironment() {
-        System.setProperty("ANDROID_HOME", "/Users/tk-lpt-979/Library/Android/sdk");
-        System.setProperty("ANDROID_SDK_ROOT", "/Users/tk-lpt-979/Library/Android/sdk");
+        System.setProperty("ANDROID_HOME", "/Users/tk-lpt-1074/Library/Android/sdk");
+        System.setProperty("ANDROID_SDK_ROOT", "/Users/tk-lpt-1074/Library/Android/sdk");
     }
 
     @BeforeClass
@@ -133,8 +133,8 @@ public class BaseSetup {
         System.out.println("ANDROID_SDK_ROOT: " + System.getenv("ANDROID_SDK_ROOT"));
         
         Map<String, String> environment = new HashMap<>(System.getenv());
-        environment.put("ANDROID_HOME", "/Users/tk-lpt-979/Library/Android/sdk");
-        environment.put("ANDROID_SDK_ROOT", "/Users/tk-lpt-979/Library/Android/sdk");
+        environment.put("ANDROID_HOME", "/Users/tk-lpt-1074/Library/Android/sdk");
+        environment.put("ANDROID_SDK_ROOT", "/Users/tk-lpt-1074/Library/Android/sdk");
 
         // Initialize and start Appium server
         service = new AppiumServiceBuilder()
@@ -151,7 +151,7 @@ public class BaseSetup {
         // Appium driver options
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("FirstMediumEnvAuto");
-        options.setApp("/Users/tk-lpt-979/eclipse-workspace/CafeZupasApp/src/test/java/resources/app-staging-release.apk");
+        options.setApp("/Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/src/test/java/resources/app-staging-release.apk");
         options.setAutomationName("UIAutomator2");
 
         // Initialize Android driver

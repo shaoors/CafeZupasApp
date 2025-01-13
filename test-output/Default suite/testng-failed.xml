@@ -3,11 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+      <class name="Android.test.SignInTest">
+        <methods>
+          <include name="configureAppium"/>
+          <include name="tearDown"/>
+          <include name="LoginTestWithWrongCreds"/>
+        </methods>
+      </class> <!-- Android.test.SignInTest -->
       <class name="Android.test.SignUpTest">
         <methods>
           <include name="configureAppium"/>
           <include name="tearDown"/>
-          <include name="testSignUpFail"/>
           <include name="testSignUp"/>
         </methods>
       </class> <!-- Android.test.SignUpTest -->
