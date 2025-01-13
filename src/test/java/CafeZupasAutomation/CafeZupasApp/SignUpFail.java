@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import CafeZupasAutomation.CafeZupasApp.java.base.BaseSetup;
 import io.appium.java_client.AppiumBy;
 
 public class SignUpFail extends BaseSetup {

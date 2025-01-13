@@ -12,15 +12,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import CafeZupasAutomation.CafeZupasApp.java.base.BaseSetup;
 import io.appium.java_client.AppiumBy;
 
 public class SignInFail extends BaseSetup {
-	
-	@BeforeClass
-    public void setUp() {
-        setupEnvironment();
-        // Configure and start Appium
-    }
 	
 	@Test
 	public void LoginTestWithWrongCreds() throws MalformedURLException, URISyntaxException {
