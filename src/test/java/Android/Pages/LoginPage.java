@@ -24,6 +24,10 @@ public class LoginPage {
 	private By toastContainer = By.xpath("//android.view.ViewGroup[contains(@resource-id, 'toast')]");
 	private By toastMessage = By
 			.xpath(".//android.widget.TextView[contains(@text, 'The email or password you entered is incorrect.')]");
+	private By notificationToast = By
+			.xpath("//android.widget.TextView[@resource-id='com.android.permissioncontroller:id/permission_message']");
+	private By allowButtonPopUp = By.xpath(
+			"//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]");
 
 	// Constructor
 	public LoginPage(AndroidDriver driver) {
@@ -73,4 +77,27 @@ public class LoginPage {
 			return false;
 		}
 	}
+
+	public void allowNotificationpopUp() {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement notificationPopup = null;
+			try {
+				notificationPopup = wait.until(ExpectedConditions.visibilityOfElementLocated(notificationToast));
+			} catch (Exception e) {
+
+				System.out.println("Notification popup not found or not visible.");
+				return;
+			}
+
+			if (notificationPopup != null && notificationPopup.isDisplayed()) {
+
+				driver.findElement(allowButtonPopUp).click();
+			}
+
+		} catch (Exception e) {
+			System.err.println("An error occurred while handling the notification popup: " + e.getMessage());
+		}
+	}
+
 }

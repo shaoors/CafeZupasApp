@@ -96,6 +96,7 @@ public class BaseSetup {
 
 		// Initialize Android driver
 		initializeDriver();
+
 	}
 
 	private void setupEnvironment() {
@@ -129,6 +130,7 @@ public class BaseSetup {
 
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options); // No <WebElement>
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
+
 	}
 
 	/**
