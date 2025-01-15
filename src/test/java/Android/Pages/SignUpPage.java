@@ -28,6 +28,10 @@ public class SignUpPage {
 	private By signUpButton = By.xpath("//android.view.ViewGroup[contains(@resource-id, 'SIGNUP_BUTTON')]");
 	private By popupMessage = By.xpath("//android.widget.TextView[contains(@text, 'Get 500 Bonus Points!')]");
 	private By allowButton = By.xpath("//android.widget.TextView[contains(@text, 'ALLOW')]");
+	private By notificationToast = By
+			.xpath("//android.widget.TextView[@resource-id='com.android.permissioncontroller:id/permission_message']");
+	private By allowButtonPopUp = By.xpath(
+			"//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]");
 
 //    private By emailField = By.xpath("//android.widget.EditText[contains(@resource-id, 'EMAIL_ADDRESS')]");
 //    private By passwordField = By.xpath("//android.widget.EditText[contains(@resource-id, 'PASSWORD')]");
@@ -103,5 +107,27 @@ public class SignUpPage {
 		Assert.assertTrue(toastContainerElement.isDisplayed(), "Toast element is not visible.");
 		Assert.assertTrue(toastElement.getText().contains(expectedMessage), "Toast message text mismatch! Expected: \""
 				+ expectedMessage + "\", but found: \"" + toastElement.getText() + "\"");
+	}
+
+	public void allowNotificationpopUp() {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebElement notificationPopup = null;
+			try {
+				notificationPopup = wait.until(ExpectedConditions.visibilityOfElementLocated(notificationToast));
+			} catch (Exception e) {
+
+				System.out.println("Notification popup not found or not visible.");
+				return;
+			}
+
+			if (notificationPopup != null && notificationPopup.isDisplayed()) {
+
+				driver.findElement(allowButtonPopUp).click();
+			}
+
+		} catch (Exception e) {
+			System.err.println("An error occurred while handling the notification popup: " + e.getMessage());
+		}
 	}
 }

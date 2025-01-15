@@ -29,6 +29,7 @@ public class SignUpTest extends BaseSetup {
 
 		// Add assertions if necessary
 		Assert.assertTrue(driver.getPageSource().contains("Get 500 Bonus Points!"), "Sign-up popup not displayed!");
+		signUpPage.allowNotificationpopUp();
 	}
 
 	@Test(priority = 2)
