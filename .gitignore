@@ -8,6 +8,9 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 
+# Ignore the entire test-output directory
+test-output/
+
 # Logs
 *.log
 logs/
