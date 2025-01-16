@@ -127,9 +127,10 @@ public class BaseSetup {
 		options.setApp(
 				"/Users/tk-lpt-1074/eclipse-workspace/CafeZupasApp/src/test/java/resources/app-staging-release.apk");
 		options.setAutomationName("UIAutomator2");
+		options.setCapability("newCommandTimeout", 300);
 
 		driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options); // No <WebElement>
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(120));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
 	}
 

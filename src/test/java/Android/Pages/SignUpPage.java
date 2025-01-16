@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -32,14 +33,6 @@ public class SignUpPage {
 			.xpath("//android.widget.TextView[@resource-id='com.android.permissioncontroller:id/permission_message']");
 	private By allowButtonPopUp = By.xpath(
 			"//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_button\"]");
-
-//    private By emailField = By.xpath("//android.widget.EditText[contains(@resource-id, 'EMAIL_ADDRESS')]");
-//    private By passwordField = By.xpath("//android.widget.EditText[contains(@resource-id, 'PASSWORD')]");
-//    private By confirmPasswordField = By.xpath("//android.widget.EditText[contains(@resource-id, 'CONFIRM_PASSWORD')]");
-//    private By favoriteLocationField = By.xpath("//android.widget.EditText[contains(@text, 'Favourite Location')]");
-//    private By arrowheadLocationOption = By.xpath("//android.widget.TextView[contains(@text, 'AZ - ARROWHEAD')]");
-//    private By phoneNumberField = By.xpath("//android.widget.EditText[contains(@resource-id, 'PHONE_NUMBER')]");
-//    private By signUpButton = By.xpath("//android.view.ViewGroup[contains(@resource-id, 'SIGNUP_BUTTON')]");
 	private By toastContainer = By.xpath("//android.view.ViewGroup[contains(@resource-id, 'toast')]");
 	private By toastMessage = By
 			.xpath(".//android.widget.TextView[contains(@text, 'The email has already been taken.')]");
@@ -110,24 +103,38 @@ public class SignUpPage {
 	}
 
 	public void allowNotificationpopUp() {
+
+		if (isNotificationToastVisible()) {
+			driver.findElement(allowButtonPopUp).click();
+		}
+	}
+
+	public boolean isNotificationToastVisible() {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-			WebElement notificationPopup = null;
-			try {
-				notificationPopup = wait.until(ExpectedConditions.visibilityOfElementLocated(notificationToast));
-			} catch (Exception e) {
+			System.out.println("Before finding notification toast");
 
-				System.out.println("Notification popup not found or not visible.");
-				return;
+			// Check the driver is active
+			if (driver == null) {
+				System.err.println("Driver is null. Cannot proceed.");
+				return false;
 			}
 
-			if (notificationPopup != null && notificationPopup.isDisplayed()) {
+			// Check current activity (optional for debugging)
+			String currentActivity = driver.currentActivity();
+			System.out.println("Current activity: " + currentActivity);
 
-				driver.findElement(allowButtonPopUp).click();
-			}
+			// Find elements
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
+			List<WebElement> notificationPopups = driver.findElements(notificationToast);
+			System.out.println("After finding notification toast: " + notificationPopups.size());
+
+			return !notificationPopups.isEmpty();
 		} catch (Exception e) {
-			System.err.println("An error occurred while handling the notification popup: " + e.getMessage());
+			// Log any exception
+			System.err.println("Error while checking notification toast: " + e.getMessage());
+			e.printStackTrace();
+			return false;
 		}
 	}
 }
