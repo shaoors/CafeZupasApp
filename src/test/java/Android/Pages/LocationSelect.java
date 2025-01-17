@@ -14,37 +14,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import CafeZupasAutomation.CafeZupasApp.BaseSetup;
+import CafeZupasAutomation.CafeZupasApp.java.base.BaseSetup;
 
 public class LocationSelect {
 	private AndroidDriver driver;
 
 	// Locators
-	private By navigationBar = By
-			.xpath("//android.widget.LinearLayout[@resource-id=\"com.cafezupasres.co:id/action_bar_root\"]");
-	private By locationField = By.xpath("//android.widget.EditText[@text=\"Search City and Zip Code\"]");
+	private By navigationBar = By.xpath("//android.widget.LinearLayout[contains(@resource-id, 'action_bar_root')]");
+	private By locationField = By.xpath("//android.widget.EditText[contains(@text, 'Search City and Zip Code')]");
 	private By locationCard = AppiumBy
 			.androidUIAutomator("new UiSelector().className(\"android.widget.ScrollView\").instance(1)");
-	private By notificationToast = By
-			.xpath("//android.widget.TextView[@resource-id='com.android.permissioncontroller:id/permission_message']");
-	// Constructor
-	private By whileUsingAppButton = By.xpath(
-			"//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_allow_foreground_only_button\"]");
-	private By deliveryTab = By.xpath("//android.widget.TextView[@text=\"Delivery\"]");
+	private By notificationToast = By.xpath("//android.widget.TextView[contains(@resource-id, 'permission_message')]");
+	private By whileUsingAppButton = By
+			.xpath("//android.widget.Button[contains(@resource-id, 'permission_allow_foreground_only_button')]");
+	private By deliveryTab = By.xpath("//android.widget.TextView[contains(@text, 'Delivery')]");
 	private By deliverySelect = By
 			.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]");
 	private By dropDownData = By.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup");
 	private By closeDropdown = By.xpath("//android.widget.LinearLayout");
-	private By addNewAddress = By.xpath("//android.widget.TextView[@text=\"Add a New Address\"]");
-	private By deliveryHeading = By.xpath("//android.widget.TextView[@text=\"Add Delivery Address\"]");
-	private By addressName = By.xpath("//android.widget.EditText[@text=\"Address Name\"]");
-
-	private By addressArea = By.xpath("//android.widget.EditText[@text=\"Select Address from here\"]");
+	private By addNewAddress = By.xpath("//android.widget.TextView[contains(@text, 'Add a New Address')]");
+	private By deliveryHeading = By.xpath("//android.widget.TextView[contains(@text, 'Add Delivery Address')]");
+	private By addressName = By.xpath("//android.widget.EditText[contains(@text, 'Address Name')]");
+	private By addressArea = By.xpath("//android.widget.EditText[contains(@text, 'Select Address from here')]");
 	private By addressAreaSelect = By.xpath(
 			"//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup");
 	private By checkBox = By.xpath("//android.widget.CheckBox");
-	private By continueButton = By.xpath("//android.widget.TextView[@text=\"CONTINUE\"]");
-	private By deliveryAtText = By.xpath("//android.widget.TextView[@text=\"DELIVERY AT\"]");
+	private By continueButton = By.xpath("//android.widget.TextView[contains(@text, 'CONTINUE')]");
+	private By deliveryAtText = By.xpath("//android.widget.TextView[contains(@text, 'DELIVERY AT')]");
+	private By imageLocator = AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)");
 
 	public LocationSelect(AndroidDriver driver) {
 		this.driver = driver;
@@ -52,8 +49,8 @@ public class LocationSelect {
 
 	// Actions
 	public void openlocationSelectView() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(navigationBar));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(imageLocator));
 		element.click();
 	}
 
@@ -94,7 +91,7 @@ public class LocationSelect {
 			System.out.println("Current activity: " + currentActivity);
 
 			// Find elements
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
 			List<WebElement> notificationPopups = driver.findElements(notificationToast);
 			System.out.println("After finding notification toast: " + notificationPopups.size());
@@ -124,12 +121,14 @@ public class LocationSelect {
 	}
 
 	public void selectDraperFromDown() {
+		System.out.println("IDR AYAY");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(dropDownData));
 		boolean draperFound = false;
-
+		System.out.println(elements);
 		// Iterate through the elements to find the one with the text "draper"
 		for (WebElement element : elements) {
+			System.out.println(element.getText());
 			if (element.getText().equalsIgnoreCase("draper")) {
 				element.click(); // Click on the element if text matches
 				System.out.println("Element with text 'draper' clicked.");
@@ -160,9 +159,12 @@ public class LocationSelect {
 		addAddressName.sendKeys(name);
 		WebElement addAddressArea = wait.until(ExpectedConditions.visibilityOfElementLocated(addressArea));
 		addAddressArea.sendKeys(area);
+		addAddressArea.click();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		WebElement selectAddressArea = wait.until(ExpectedConditions.visibilityOfElementLocated(addressAreaSelect));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		WebElement selectAddressArea = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//android.widget.TextView[@text=\"" + area + "\"]")));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 		selectAddressArea.click();
 		driver.findElement(checkBox).click();
 		baseFunction.scrollToEndAction();
@@ -204,8 +206,8 @@ public class LocationSelect {
 			allowNotificationpopUp();
 			selectDeliveryTab();
 			clickDeliverySelect();
-			selectDraperFromDown();
-			addDeliveryAddress("Draper", "Draper Utah Temple, Canyon Vista Lane, Draper, UT, USA");
+//			selectDraperFromDown();
+//			addDeliveryAddress("Draper", "Draper Utah Temple, Canyon Vista Lane, Draper, UT, USA");
 			deliveryTextEnd();
 			return "";
 

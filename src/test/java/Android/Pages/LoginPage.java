@@ -94,7 +94,7 @@ public class LoginPage {
 		try {
 			clickSignInButton();
 			enterUsername("muhammad.shaoor@tkxel.io");
-			enterPassword("Tkxel123@");
+			enterPassword("Tkxel1234@");
 			clickLogin();
 			sleepFunction(10000);
 			allowNotificationpopUp();

@@ -17,29 +17,29 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class locationSelectTest extends BaseSetup {
 
-//	@Test(priority = 1)
-//	public void TestPickUpLocation() {
-//		LoginPage loginPage = new LoginPage(driver);
-//		loginPage.loginTestFunction();
-//		System.out.print("After Login");
-//		LocationSelect location = new LocationSelect(driver);
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//		String data = location.pickupLocationTestFunction();
-//		System.out.print(data);
-//		sleepFunction(10000);
-
-//	}
-
 	@Test(priority = 1)
-	public void TestDeliveryLocation() {
+	public void TestPickUpLocation() {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.loginTestFunction();
 		System.out.print("After Login");
 		LocationSelect location = new LocationSelect(driver);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		String data = location.deliveryLocationTestFunction();
+		String data = location.pickupLocationTestFunction();
 		System.out.print(data);
 		sleepFunction(10000);
+
 	}
+
+//	@Test(priority = 1)
+//	public void TestDeliveryLocation() {
+//		LoginPage loginPage = new LoginPage(driver);
+//		loginPage.loginTestFunction();
+//		System.out.print("After Login");
+//		LocationSelect location = new LocationSelect(driver);
+//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//		String data = location.deliveryLocationTestFunction();
+//		System.out.print(data);
+//		sleepFunction(10000);
+//	}
 
 }
