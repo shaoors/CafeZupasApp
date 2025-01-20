@@ -17,20 +17,21 @@ public class SignInTest extends BaseSetup {
 	@Test(priority = 1)
 	public void testLogin() {
 		LoginPage loginPage = new LoginPage(driver);
+		loginPage.loginTestFunction();
+//		// Perform login actions
+//		loginPage.clickSignInButton();
+//		loginPage.enterUsername("muhammad.shaoor@tkxel.io");
+//		loginPage.enterPassword("Tkxel123@");
+//		loginPage.clickLogin();
+//		loginPage.allowNotificationpopUp();
+//		// Verify welcome screen
+//		String actualWelcomeText = loginPage.getWelcomeScreenText();
+//		String expectedWelcomeText = "Welcome";
+//		Assert.assertTrue(actualWelcomeText.contains(expectedWelcomeText), "Welcome screen text mismatch! Expected: \""
+//				+ expectedWelcomeText + "\", but found: \"" + actualWelcomeText + "\"");
 
-		// Perform login actions
-		loginPage.clickSignInButton();
-		loginPage.enterUsername("muhammad.shaoor@tkxel.io");
-		loginPage.enterPassword("Tkxel1234@");
-		loginPage.clickLogin();
-		loginPage.allowNotificationpopUp();
-		// Verify welcome screen
-		String actualWelcomeText = loginPage.getWelcomeScreenText();
-		String expectedWelcomeText = "Welcome";
-		Assert.assertTrue(actualWelcomeText.contains(expectedWelcomeText), "Welcome screen text mismatch! Expected: \""
-				+ expectedWelcomeText + "\", but found: \"" + actualWelcomeText + "\"");
 	}
-
+//
 	@Test(priority = 2)
 	public void LoginTestWithWrongCreds() {
 		LoginPage loginPage = new LoginPage(driver);
