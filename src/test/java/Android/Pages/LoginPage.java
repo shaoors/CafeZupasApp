@@ -91,7 +91,7 @@ public class LoginPage {
 	}
 
 	public void loginTestFunction() {
-		try {
+//		try {
 			clickSignInButton();
 			enterUsername("muhammad.shaoor@tkxel.io");
 			enterPassword("Tkxel1234@");
@@ -106,9 +106,9 @@ public class LoginPage {
 					"Welcome screen text mismatch! Expected: \"" + expectedWelcomeText + "\", but found: \""
 							+ actualWelcomeText + "\"");
 
-		} catch (Exception e) {
-			System.err.println("FAIL IN LOGIN: " + e.getMessage());
-		}
+//		} catch (Exception e) {
+//			System.err.println("FAIL IN LOGIN: " + e.getMessage());
+//		}
 	}
 
 	public boolean isNotificationToastVisible() {
