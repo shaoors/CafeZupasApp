@@ -30,7 +30,8 @@ public class LocationSelect {
 	private By deliveryTab = By.xpath("//android.widget.TextView[contains(@text, 'Delivery')]");
 	private By deliverySelect = By
 			.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]");
-	private By dropDownData = By.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup");
+	private By dropDownData = By
+			.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup");
 	private By closeDropdown = By.xpath("//android.widget.LinearLayout");
 	private By addNewAddress = By.xpath("//android.widget.TextView[contains(@text, 'Add a New Address')]");
 	private By deliveryHeading = By.xpath("//android.widget.TextView[contains(@text, 'Add Delivery Address')]");
@@ -41,7 +42,10 @@ public class LocationSelect {
 	private By checkBox = By.xpath("//android.widget.CheckBox");
 	private By continueButton = By.xpath("//android.widget.TextView[contains(@text, 'CONTINUE')]");
 	private By deliveryAtText = By.xpath("//android.widget.TextView[contains(@text, 'DELIVERY AT')]");
-	private By imageLocator = AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)");
+	private By imageLocator = AppiumBy
+			.androidUIAutomator("new UiSelector().className(\"android.widget.ImageView\").instance(1)");
+	private By draperSTextLocator = By.xpath("//android.widget.TextView[@text=\"draper\"]");
+	private By draperLTextLocator = By.xpath("//android.widget.TextView[@text=\"draper\"]");
 
 	public LocationSelect(AndroidDriver driver) {
 		this.driver = driver;
@@ -120,21 +124,36 @@ public class LocationSelect {
 		element.click();
 	}
 
-	public void selectDraperFromDown() {
-		System.out.println("IDR AYAY");
+	public void selectDraperFromDownOrAdd() {
+
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		List<WebElement> elements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(dropDownData));
 		boolean draperFound = false;
-		System.out.println(elements);
 		// Iterate through the elements to find the one with the text "draper"
 		for (WebElement element : elements) {
-			System.out.println(element.getText());
-			if (element.getText().equalsIgnoreCase("draper")) {
-				element.click(); // Click on the element if text matches
-				System.out.println("Element with text 'draper' clicked.");
-				draperFound = true;
-				break; // Exit the loop once clicked
+			System.out.println(element);
+			System.out.println(element.getText().trim());
+			System.out.println(element.getText().trim() == "draper");
+			try {
+				Thread.sleep(5000); // Pause for 2 seconds (2000 milliseconds)
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
+			if (driver.findElement(draperSTextLocator).isDisplayed()) {
+				driver.findElement(draperSTextLocator).click();
+				draperFound = true;
+				continueClickButton();
+				break;
+			}
+			if (driver.findElement(draperLTextLocator).isDisplayed()) {
+				driver.findElement(draperLTextLocator).click();
+				draperFound = true;
+				continueClickButton();
+				break;
+			}
+
+			// Exit the loop once clicked
+
 		}
 
 		// If no matching element is found, perform an alternative action
@@ -146,6 +165,7 @@ public class LocationSelect {
 			WebElement deliveryHeadingText = wait.until(ExpectedConditions.visibilityOfElementLocated(deliveryHeading));
 			Assert.assertTrue(deliveryHeadingText.isDisplayed(), "Delivery From not Shown");
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			addDeliveryAddress("Draper", "Draper Utah Temple, Canyon Vista Lane, Draper, UT, USA");
 
 		}
 	}
@@ -169,52 +189,58 @@ public class LocationSelect {
 		driver.findElement(checkBox).click();
 		baseFunction.scrollToEndAction();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebElement continueButtonEle = wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton));
-		continueButtonEle.click();
+		continueClickButton();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 	}
 
-	public void deliveryTextEnd() {
+	public void continueClickButton() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebElement continueButtonEle = wait.until(ExpectedConditions.visibilityOfElementLocated(continueButton));
+		continueButtonEle.click();
+	}
+
+	public void deliveryTextEnd() {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
 		WebElement deliveryAtTextAtTop = wait.until(ExpectedConditions.visibilityOfElementLocated(deliveryAtText));
 		Assert.assertTrue(deliveryAtTextAtTop.isDisplayed(), "Delivery At not Shown");
 
 	}
 
 	public String pickupLocationTestFunction() {
-		try {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-			openlocationSelectView();
-			allowNotificationpopUp();
-			enterLocationString("Draper");
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-			String data = selectLocation();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			return data;
+//		try {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		openlocationSelectView();
+		allowNotificationpopUp();
+		enterLocationString("Draper");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		String data = selectLocation();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		return data;
 
-		} catch (Exception e) {
-			System.err.println("FAIL IN LOCATION" + e.getMessage());
-			return "";
-		}
+//		} catch (Exception e) {
+//			System.err.println("FAIL IN LOCATION" + e.getMessage());
+//			return "";
+//		}
 
 	}
 
 	public String deliveryLocationTestFunction() {
-		try {
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-			openlocationSelectView();
-			allowNotificationpopUp();
-			selectDeliveryTab();
-			clickDeliverySelect();
-//			selectDraperFromDown();
-//			addDeliveryAddress("Draper", "Draper Utah Temple, Canyon Vista Lane, Draper, UT, USA");
-			deliveryTextEnd();
-			return "";
+//		try {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		openlocationSelectView();
+		allowNotificationpopUp();
+		selectDeliveryTab();
+		clickDeliverySelect();
+		selectDraperFromDownOrAdd();
+		deliveryTextEnd();
+		return "";
 
-		} catch (Exception e) {
-			System.err.println("FAIL IN LOCATION" + e.getMessage());
-			return "";
-		}
+//		} catch (Exception e) {
+//			System.err.println("FAIL IN LOCATION" + e.getMessage());
+//			return "";
+//		}
 
 	}
 
